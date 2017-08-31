@@ -13,6 +13,13 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+setInterval(function(){
+    $("#current-datetime").html(moment().format('dddd, MMMM Do YYYY, h:mm:ss A'))
+  }, 1000);
+
+// // Update the train times once every minute
+// setInterval(updateTrainTime,60 * 1000);
+
 //On-click event for when a train is submitted.
 $("#add-train").on("click", function(event) {
   event.preventDefault();
@@ -79,7 +86,30 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
   // Add each train's data into the table
   $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
-  trainFrequency + "</td><td>" + nextTrainFormatted + "</td><td>" + minutesTilTrain + "</td><td>");
+  trainFrequency + "</td><td>" + nextTrainFormatted + "</td><td class='time'>" + minutesTilTrain + "</td><td>");
 });
 
+
+// function updateTrainTime(){
+//   console.log("---------------------------------------------------");
+//   console.log("Updating train time once for every minute");
+//   database.ref().once('value', function(snapshot) {
+//       snapshot.forEach(function(childSnapshot) {
+
+//     var trainStart = childSnapshot.val().start;
+//     var trainFrequency = childSnapshot.val().frequency;
+
+//     firstTimeConverted = moment(trainStart, "hh:mm").subtract(1, "years");
+//     currentTime = moment();
+//     diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+//     tRemainder = diffTime % trainFrequency;
+//     minutesTilTrain = trainFrequency - tRemainder;
+
+//     $("#time").append(minutesTilTrain);
+    
+//     console.log(minutesTilTrain);
+
+//       });
+//   });
+// }
 }); //end of document ready

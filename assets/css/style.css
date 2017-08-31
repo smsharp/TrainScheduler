@@ -25,13 +25,30 @@ body {
 }
 
 #top-panel {
-    background-color: #9b4a15;
-    border-color: #9b4a15;
+  background-color: #9b4a15;
+  border-color: #9b4a15;
+}
+
+.panel-transparent {
+  background: none;
+}
+
+.panel-transparent .panel-body {
+  background: rgba(255, 255, 255, 0.7)!important;
+  color: rgba(0,0,0,1.0);
 }
 
 .panel-primary>.panel-heading {
-    background-color: #fcb042;
-    border-color: #fcb042;
+  background-color: #fcb042;
+  border-color: #fcb042;
+}
+
+.table>thead>tr>th {
+  border-bottom: 2px solid #fff;
+}
+
+.table>tbody>tr>td {
+  border-top: 1px solid #fff;
 }
 
 strong {
